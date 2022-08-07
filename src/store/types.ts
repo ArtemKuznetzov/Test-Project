@@ -1,3 +1,9 @@
+import { useDispatch } from "react-redux";
+import { CombinedState } from "redux";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
+import store, { rootReducer } from ".";
+import { authReducer } from "./reducers/authReducer";
+
 export const SET_USER = "SET_USER";
 export const SIGN_OUT = "SIGN_OUT";
 export const SET_LOADING = "SET_LOADING";
@@ -68,3 +74,6 @@ export type AuthAction =
   | SetErrorAction
   | NeedVerificationAction
   | SetSuccessAction;
+
+export type ReduxState = ReturnType<typeof rootReducer>;
+export type TypedDispatch = ThunkDispatch<ReduxState, any, AuthAction>;
