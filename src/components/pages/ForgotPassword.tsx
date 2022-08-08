@@ -8,8 +8,8 @@ import {
   setError,
   setSuccess,
 } from "../../store/actions/authActions";
-import { RootState } from "../../store";
 import { TypedDispatch } from "../../store/types";
+import { RootState } from "../../store/store";
 
 const ForgotPassword: FC = () => {
   const [email, setEmail] = useState("");

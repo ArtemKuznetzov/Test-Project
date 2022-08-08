@@ -5,7 +5,7 @@ import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Message from "../UI/Message";
 import { signin, setError } from "../../store/actions/authActions";
-import { RootState } from "../../store";
+import { RootState } from "../../store/store";
 import { TypedDispatch } from "../../store/types";
 
 const Signin: FC = () => {

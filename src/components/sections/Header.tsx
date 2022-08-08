@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../UI/Button";
-import { RootState } from "../../store";
+import { RootState } from "../../store/store";
 import { signout } from "../../store/actions/authActions";
-import store from "../../store";
+import { store } from "../../store/store";
 import { ThunkAction } from "redux-thunk";
 import { TypedDispatch } from "../../store/types";
 

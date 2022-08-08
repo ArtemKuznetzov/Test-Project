@@ -7,20 +7,20 @@ import {
   RouteProps,
   BrowserRouter,
 } from "react-router-dom";
-import { RootState } from "../../store";
+import { RootState } from "../../store/store";
 
 interface Props extends RouteProps {
   component: any;
 }
 
-const PrivateRoute: FC<Props> = ({ component: Component, ...rest }) => {
-  const { authenticated } = useSelector((state: RootState) => state.auth);
+// const PrivateRoute: FC<Props> = ({ component: Component, ...rest }) => {
+//   const { authenticated } = useSelector((state: RootState) => state.auth);
 
-  if (authenticated) {
-    return <Route path="/contacts" element={<Component />} />;
-  } else {
-    return <Route path="*" element={<Navigate to="/sigin" replace />} />;
-  }
-};
+//   if (authenticated) {
+//     return <Route path="/contacts" element={<Component />} />;
+//   } else {
+//     return <Route path="*" element={<Navigate to="/sigin" replace />} />;
+//   }
+// };
 
-export default PrivateRoute;
+// export default PrivateRoute;

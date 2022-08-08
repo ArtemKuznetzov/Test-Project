@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { CombinedState } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
-import store, { rootReducer } from ".";
+import { store, rootReducer } from "./store";
 import { authReducer } from "./reducers/authReducer";
 
 export const SET_USER = "SET_USER";

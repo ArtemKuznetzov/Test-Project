@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import "./firebase/config";
 import "bulma/css/bulma.min.css";
-import store from "./store";
+import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -1,29 +1,36 @@
-import React, { FC, useEffect } from "react";
+import firebase from "firebase/compat/app";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Routes } from "react-router-dom";
-import "./App.css";
-import Header from "./components/sections/Header";
-import SignUp from "./components/pages/Signup";
-import SignIn from "./components/pages/Signin";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dashboard from "./components/pages/Dashboard";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import Homepage from "./components/pages/Homepage";
-import Dashboard from "./components/pages/Dashboard";
-import PrivateRoute from "./components/auth/PrivateRoute";
-import PublicRoute from "./components/auth/PublicRoute";
+import Signin from "./components/pages/Signin";
+import Signup from "./components/pages/Signup";
+import Header from "./components/sections/Header";
 import Loader from "./components/UI/Loader";
-import firebase from "./firebase/config";
 import {
   getUserById,
   setLoading,
   setNeedVerification,
 } from "./store/actions/authActions";
-import { RootState } from "./store";
+import { RootState } from "./store/store";
 import { TypedDispatch } from "./store/types";
 
-const App: FC = () => {
+export default function App() {
   const useTypedDispatch = () => useDispatch<TypedDispatch>();
   const dispatch = useTypedDispatch();
   const { loading } = useSelector((state: RootState) => state.auth);
+
+  // getAuth()
+  // .getUser('God1')
+  // .then((userRecord: User) => {
+  //   // See the UserRecord reference doc for the contents of userRecord.
+  //   console.log(`Successfully fetched user data: ${userRecord}`);
+  // })
+  // .catch((error: string) => {
+  //   console.log('Error fetching user data:', error);
+  // });
 
   // Check if user exists
   useEffect(() => {
@@ -48,17 +55,22 @@ const App: FC = () => {
   }
 
   return (
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="*" element={<Homepage />} />
+    //     <Route path="signup/" element={<SignUp />} />
+    //   </Routes>
+    // </BrowserRouter>
+
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header />
       <Routes>
-        {/* <PublicRoute path="/" component={Homepage} />
-        <PublicRoute path="/signup" component={SignUp} /> */}
-        <PublicRoute path="/signin" component={SignIn} />
-        {/* <PublicRoute path="/forgot-password" component={Dashboard} />
-        <PrivateRoute path="/dashboard" component={Dashboard} /> */}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
-};
-
-export default App;
+}

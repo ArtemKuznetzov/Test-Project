@@ -1,14 +1,31 @@
 import firebase from "firebase/compat/app";
-import "firebase/auth";
-import "firebase/firestore";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCaJCHaLURjepSRNMAXj6EL160I4477nmU",
+  authDomain: "contacts-list-5a4e0.firebaseapp.com",
+  databaseURL:
+    "https://contacts-list-5a4e0-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "contacts-list-5a4e0",
+  storageBucket: "contacts-list-5a4e0.appspot.com",
+  messagingSenderId: "537573385901",
+  appId: "1:537573385901:web:e5e29900b35021284c8824",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 firebase.initializeApp({
-  apiKey: process.env.CONTACTS_LIST_FIREBASE_API_KEY,
-  authDomain: process.env.CONTACTS_LIST_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.CONTACTS_LIST_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.CONTACTS_LIST_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.CONTACTS_LIST_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.CONTACTS_LIST_FIREBASE_APP_ID,
+  apiKey: firebaseConfig.apiKey,
+  authDomain: firebaseConfig.authDomain,
+  databaseURL:
+    "https://contacts-list-5a4e0-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: firebaseConfig.projectId,
+  storageBucket: firebaseConfig.storageBucket,
+  messagingSenderId: firebaseConfig.messagingSenderId,
+  appId: firebaseConfig.appId,
 });
 
 export default firebase;

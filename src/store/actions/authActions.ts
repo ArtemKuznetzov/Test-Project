@@ -11,7 +11,7 @@ import {
   NEED_VERIFICATION,
   SET_SUCCESS,
 } from "../types";
-import { RootState } from "..";
+import { RootState } from "../store";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import userEvent from "@testing-library/user-event";
