@@ -1,7 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCaJCHaLURjepSRNMAXj6EL160I4477nmU",
@@ -15,13 +14,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 firebase.initializeApp({
   apiKey: firebaseConfig.apiKey,
   authDomain: firebaseConfig.authDomain,
-  databaseURL:
-    "https://contacts-list-5a4e0-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: firebaseConfig.databaseURL,
   projectId: firebaseConfig.projectId,
   storageBucket: firebaseConfig.storageBucket,
   messagingSenderId: firebaseConfig.messagingSenderId,

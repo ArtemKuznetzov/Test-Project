@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ThunkAction } from "redux-thunk";
 import Dashboard from "./components/pages/Dashboard";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import Homepage from "./components/pages/Homepage";
@@ -15,22 +16,14 @@ import {
   setNeedVerification,
 } from "./store/actions/authActions";
 import { RootState } from "./store/store";
-import { TypedDispatch } from "./store/types";
+import { AuthAction, SET_USER, TypedDispatch, User } from "./store/types";
 
 export default function App() {
   const useTypedDispatch = () => useDispatch<TypedDispatch>();
   const dispatch = useTypedDispatch();
-  const { loading } = useSelector((state: RootState) => state.auth);
-
-  // getAuth()
-  // .getUser('God1')
-  // .then((userRecord: User) => {
-  //   // See the UserRecord reference doc for the contents of userRecord.
-  //   console.log(`Successfully fetched user data: ${userRecord}`);
-  // })
-  // .catch((error: string) => {
-  //   console.log('Error fetching user data:', error);
-  // });
+  const { loading, authenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   // Check if user exists
   useEffect(() => {
@@ -54,14 +47,19 @@ export default function App() {
     return <Loader />;
   }
 
-  return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="*" element={<Homepage />} />
-    //     <Route path="signup/" element={<SignUp />} />
-    //   </Routes>
-    // </BrowserRouter>
+  // This is correct request to the firestore database
 
+  firebase
+    .firestore()
+    .collection("users")
+    .onSnapshot((docs: any) => {
+      docs.forEach((doc: any) => {
+        console.log("doc id", doc.id);
+        console.log("data", doc.data());
+      });
+    });
+
+  return (
     <BrowserRouter>
       <Header />
       <Routes>
@@ -69,7 +67,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {!authenticated && <Route path="/dashboard" element={<Dashboard />} />}
       </Routes>
     </BrowserRouter>
   );
